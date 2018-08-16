@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Creation of the genesis block of our ethereum network
+geth --datadir /home/rio_user/block-data init rbt_common/GenesisBlock.json
+
+# Setup the account
+./rbt_common/setup_account
+
+# Run geth with the good configuration (using environment variables)
+# Note: We use the --nodiscover and --maxpeers flags to make sure no one can
+# discover our nodes and connect to them (security measure).
+# Note 2: If we want to enable "auto discovery" between nodes, we could use the  --bootstrap flag.
+geth --identity=$identity_env --networkid=12271 --port=30330 --verbosity=1 --datadir=/home/rio_user/block-data --rpc --rpcport=$rpcport_env --rpcaddr 0.0.0.0 --rpccorsdomain "*" --rpcapi "eth,net,web3,personal,miner" --nodiscover --maxpeers=24 console
+
+
+

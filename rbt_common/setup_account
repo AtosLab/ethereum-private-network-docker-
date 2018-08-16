@@ -1,0 +1,4 @@
+#!/bin/bash
+
+geth --password rbt_common/password account new
+

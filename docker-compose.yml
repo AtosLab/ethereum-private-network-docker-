@@ -1,0 +1,167 @@
+version: '2.0'
+
+services:
+    rio_one:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_ONE"
+                rpcport_arg: 8661
+        tty: true
+        stdin_open: true
+        ports:
+            - "8661:8661"
+        links:
+            - netstats
+        networks:
+            - riobitnet
+    rio_two:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_TWO"
+                rpcport_arg: 8662
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8662:8662"
+    rio_three:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_THREE"
+                rpcport_arg: 8663
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8663:8663"
+    rio_four:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_FOUR"
+                rpcport_arg: 8664
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8664:8664"
+    rio_five:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_FIVE"
+                rpcport_arg: 8665
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8665:8665"
+    rio_six:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_SIX"
+                rpcport_arg: 8666
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8666:8666"
+    rio_seven:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_SEVEN"
+                rpcport_arg: 8667
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8667:8667"
+    rio_eight:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_EIGHT"
+                rpcport_arg: 8668
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8668:8668"
+    rio_nine:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_NINE"
+                rpcport_arg: 8669
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8669:8669"
+    rio_ten:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                identity_arg: "RIO_TEN"
+                rpcport_arg: 8670
+        networks:
+            - riobitnet
+        tty: true
+        links:
+            - netstats
+        stdin_open: true
+        ports:
+            - "8670:8670"
+    netstats:
+        build: eth-netstats
+        restart: on-failure
+        container_name: netstats
+        environment:
+          - WS_SECRET=eth-net-stats-secret
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+        ports:
+          - "3000:3000"
+networks:
+    riobitnet:
+        external:
+            name: riobitnet
